@@ -1,6 +1,6 @@
 # Automate generation of a histogram
 def state_histogram(states, buckets):
-import matplotlib.pyplot as plt
+	import matplotlib.pyplot as plt
 
 	fig, ax = plt.subplots()
 
