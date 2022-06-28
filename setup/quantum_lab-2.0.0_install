@@ -11,7 +11,7 @@ conda create --no-default-packages -n ql2 python=3.9
 
 # Thanks @BuckmasterFresh for this:
 # https://twitter.com/BuckmasterFresh/status/1541746939099742209
-source activate quantumlab
+source activate ql2
 
 pip3 install --upgrade pip
 conda install ipython
