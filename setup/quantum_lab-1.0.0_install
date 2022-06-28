@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+QISKIT_VERSION=${QISKIT_VERSION:-0.36.2}
+MYQLM_VERSION=${MYQLM_VERSION:-1.5.1}
+BRAKET_VERSION=${BRAKET_VERSION:-1.25.0}
+
+conda create --no-default-packages -n quantumlab python=3.9
+conda activate quantumlab
+
+pip3 install --upgrade pip
+pip3 install jupyterlab
+pip3 install qiskit==${QISKIT_VERSION}
+pip3 install qiskit[visualization]==${QISKIT_VERSION}
+pip3 install amazon-braket-sdk==${BRAKET_VERSION}
+pip3 install Wand
+pip3 install myqlm==${MYQLM_VERSION} 
+python3 -m qat.magics.install
