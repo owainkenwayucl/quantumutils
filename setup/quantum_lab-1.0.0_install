@@ -1,4 +1,4 @@
-#!/bin/bash -i # yes conda sucks
+#!/usr/bin/env bash
 
 set -e
 
@@ -8,7 +8,10 @@ BRAKET_VERSION=${BRAKET_VERSION:-1.25.0}
 
 
 conda create --no-default-packages -n quantumlab python=3.9
-conda activate quantumlab
+
+# Thanks @BuckmasterFresh for this:
+# https://twitter.com/BuckmasterFresh/status/1541746939099742209
+source activate quantumlab
 
 pip3 install --upgrade pip
 pip3 install jupyterlab
