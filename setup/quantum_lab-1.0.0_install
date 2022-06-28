@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash -i # yes conda sucks
 
 set -e
 
@@ -6,7 +6,6 @@ QISKIT_VERSION=${QISKIT_VERSION:-0.36.2}
 MYQLM_VERSION=${MYQLM_VERSION:-1.5.1}
 BRAKET_VERSION=${BRAKET_VERSION:-1.25.0}
 
-conda init bash
 
 conda create --no-default-packages -n quantumlab python=3.9
 conda activate quantumlab
