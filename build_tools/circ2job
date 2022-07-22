@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
+# This program converts a .circ file to a job that can be run on the command line.
+# So the process with an AQASM file is:
 
-# A tool to do this seems to be missing from the QLM docs?
+# aqasm2circ test.aqasm test.circ
+# circ2job test.circ
+# qat-jobrun --qpu qat.pylinalg:PyLinalg test.circ.job
+
+# A tool to do this seems to be missing from the QLM/docs?
+
+# Owain Kenway, 2022
 
 # Read in a circuit file and dump out a job.
 def gen_job(infile, outfile):
@@ -17,7 +25,6 @@ if __name__ == '__main__':
 	parser.add_argument('-o', metavar='filename', type=str, help='Output file.')
 	parser.add_argument('circuit')
 	args = parser.parse_args()
-
 
 	infile = args.circuit
 
