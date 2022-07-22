@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+
+# A tool to do this seems to be missing from the QLM docs?
+
+# Read in a circuit file and dump out a job.
+def gen_job(infile, outfile):
+	from qat.core import Circuit
+	in_circ = Circuit.load(infile)
+	out_job = in_circ.to_job()
+	out_job.dump(outfile)
+
+# Main function
+if __name__ == '__main__':
+	import argparse
+
+	parser = argparse.ArgumentParser(description='Convert circuits to jobs.')
+	parser.add_argument('-o', metavar='filename', type=str, help='Output file.')
+	parser.add_argument('circuit')
+	args = parse.parse_args()
+
+	infile = args.circuit
+
+	outfile = args.circuit + '.job'
+	if (args.o != None):
+		outfile = args.o
+
+	if infile != '':
+		gen_job(infile, outfile)
+	
