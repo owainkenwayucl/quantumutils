@@ -16,7 +16,8 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Convert circuits to jobs.')
 	parser.add_argument('-o', metavar='filename', type=str, help='Output file.')
 	parser.add_argument('circuit')
-	args = parse.parse_args()
+	args = parser.parse_args()
+
 
 	infile = args.circuit
 
