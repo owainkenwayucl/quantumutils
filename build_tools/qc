@@ -84,7 +84,7 @@ if __name__ == '__main__':
 		fm = args.full_matrices
 	ndg = False
 	if (args.no_default_gateset != None):
-		ndg = ags.no_default_gateset
+		ndg = args.no_default_gateset
 	ni = False
 	if (args.no_inline != None):
 		ni = args.no_inline
