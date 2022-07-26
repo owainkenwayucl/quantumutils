@@ -78,6 +78,8 @@ if __name__ == '__main__':
 	parser.add_argument('--full-matrices', action='store_true', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
 	parser.add_argument('--no-default-gateset', action='store_true', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
 	parser.add_argument('--no-inline', action='store_true', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
+	parser.add_argument('-L', action='append', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
+
 	parser.add_argument('aqasm')
 	args = parser.parse_args()
 
@@ -106,8 +108,13 @@ if __name__ == '__main__':
 	if (args.no_inline != None):
 		ni = args.no_inline
 
+	if (args.L == None):
+		link = []
+	else:
+		link = args.L
+
 	if infile != '':
-		c = run_aqasm2circ(infile, fm, ndg, ni, [])
+		c = run_aqasm2circ(infile, fm, ndg, ni, link)
 		if batch:
 			gen_batch(c, outfile)
 		else:
