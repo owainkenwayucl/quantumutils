@@ -11,6 +11,7 @@
 # Dump out a job.
 def gen_job(circuit, outfile):
 	out_job = circuit.to_job()
+	print("Writing output file: " + outfile)
 	out_job.dump(outfile)
 
 def run_aqasm2circ(infile, fm, ndg, ni, modules):
@@ -37,7 +38,7 @@ def run_aqasm2circ(infile, fm, ndg, ni, modules):
 	command_line.append(infile)
 	command_line.append(outfile)
 
-	print("aqaqsm2circ command: " + str(command_line))
+	print("aqasm2circ command: " + str(command_line))
 
 	status = subprocess.run(command_line, capture_output=True, encoding='UTF-8')
 
