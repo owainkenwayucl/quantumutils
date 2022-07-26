@@ -14,6 +14,13 @@ def gen_job(circuit, outfile):
 	print("Writing output file: " + outfile)
 	out_job.dump(outfile)
 
+# This is an annoying way of doing things but:
+# The errors produced by aqasm2circ imply it is python, which is good.
+# BUT: the parts of MyQLM that generate circuits from aqasm are not 
+# documented so we must assume they are closed source and we may not
+# look at them, so despite being in python and there probably being 
+# a library call we can make to do this directly, we go this circuitous
+# route of subprocess for license reasons :(
 def run_aqasm2circ(infile, fm, ndg, ni, modules):
 	import tempfile
 	import os.path
@@ -31,6 +38,9 @@ def run_aqasm2circ(infile, fm, ndg, ni, modules):
 		command_line.append('--full-matrices')
 	if ndg: 
 		command_line.append('--no-default-gateset')
+	if ni: 
+		command_line.append('--no-inline')
+
 	for a in modules:
 		command_line.append(' -L ')
 		command_line.append(a)
@@ -56,6 +66,10 @@ if __name__ == '__main__':
 
 	parser = argparse.ArgumentParser(description='Compile AQASM to jobs.')
 	parser.add_argument('-o', metavar='filename', type=str, help='Output file.')
+	parser.add_argument('-b', action='store_true', help='Generate a batch file instead.')
+	parser.add_argument('--full-matrices', action='store_true', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
+	parser.add_argument('--no-default-gateset', action='store_true', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
+	parser.add_argument('--no-inline', action='store_true', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
 	parser.add_argument('aqasm')
 	args = parser.parse_args()
 
@@ -65,7 +79,17 @@ if __name__ == '__main__':
 	if (args.o != None):
 		outfile = args.o
 
+	fm = False
+	if (args.full-matrices != None):
+		fm = args.full-matrices
+	ndg = False
+	if (args.no-default-gateset != None):
+		ndg = ags.no-default-gateset
+	ni = False
+	if (args.no-inline != None):
+		ni = args.no-inline
+
 	if infile != '':
-		c = run_aqasm2circ(infile, False, False, False, [])
+		c = run_aqasm2circ(infile, fm, ndg, ni, [])
 		gen_job(c, outfile)
 	
