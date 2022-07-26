@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+# This program compiles an AQASM file into a job or a batch file.
+
+# qc test.aqasm 
+# qat-jobrun --qpu qat.pylinalg:PyLinalg test.aqasm.job
+
+# A tool to do this seems to be missing from the QLM/docs?
+
+# Owain Kenway, 2022
+
+# Dump out a job.
+def gen_job(circuit, outfile):
+	out_job = circuit.to_job()
+	out_job.dump(outfile)
+
+def run_aqasm2circ(infile, fm, ndg, ni, modules):
+	import tempfile
+	import os.path
+	import subprocess
+	from qat.core import Circuit
+
+	td = tempfile.mkdtemp(prefix='qc')
+	outfilename = infile + ".circ"
+	outfile = os.path.join(td, outfilename)
+
+	print("Temporary output file: " + outfile)
+
+	command_line = ['aqasm2circ']
+	if fm:
+		command_line.append('--full-matrices')
+	if ndg: 
+		command_line.append('--no-default-gateset')
+	for a in modules:
+		command_line.append(' -L ')
+		command_line.append(a)
+
+	command_line.append(infile)
+	command_line.append(outfile)
+
+	print("aqaqsm2circ command: " + command_line)
+
+	status = subprocess.run(command_line, capture_output=True, encoding='UTF-8')
+
+	if (status.returncode == 0):
+		c = Circuit.load(outfile)
+		os.remove(outfile)
+		os.rmdir(td)
+		return c
+	else 
+		raise OSError(status.stderr)
+	
+# Main function
+if __name__ == '__main__':
+	import argparse
+
+	parser = argparse.ArgumentParser(description='Compile AQASM to jobs.')
+	parser.add_argument('-o', metavar='filename', type=str, help='Output file.')
+	parser.add_argument('circuit')
+	args = parser.parse_args()
+
+	infile = args.circuit
+
+	outfile = args.circuit + '.job'
+	if (args.o != None):
+		outfile = args.o
+
+	if infile != '':
+		c = run_aqasm2circ(infile, False, False, False, [])
+		gen_job(c, outfile)
+	
