@@ -20,7 +20,7 @@ def gen_batch(circuit, outfile):
 	out_job = circuit.to_job()
 	batch_job = Batch(jobs=[out_job])
 	print("Writing output file: " + outfile)
-	batch.dump(outfile)
+	batch_job.dump(outfile)
 
 # This is an annoying way of doing things but:
 # The errors produced by aqasm2circ imply it is python, which is good.
