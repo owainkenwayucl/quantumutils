@@ -50,7 +50,7 @@ def run_aqasm2circ(infile, fm, ndg, ni, modules):
 		command_line.append('--no-inline')
 
 	for a in modules:
-		command_line.append(' -L ')
+		command_line.append('-L')
 		command_line.append(a)
 
 	command_line.append(infile)
