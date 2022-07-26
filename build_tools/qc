@@ -56,12 +56,12 @@ if __name__ == '__main__':
 
 	parser = argparse.ArgumentParser(description='Compile AQASM to jobs.')
 	parser.add_argument('-o', metavar='filename', type=str, help='Output file.')
-	parser.add_argument('circuit')
+	parser.add_argument('aqasm')
 	args = parser.parse_args()
 
-	infile = args.circuit
+	infile = args.aqasm
 
-	outfile = args.circuit + '.job'
+	outfile = args.aqasm + '.job'
 	if (args.o != None):
 		outfile = args.o
 
