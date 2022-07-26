@@ -14,6 +14,14 @@ def gen_job(circuit, outfile):
 	print("Writing output file: " + outfile)
 	out_job.dump(outfile)
 
+# Dump out a batch job.
+def gen_batch(circuit, outfile):
+	from qat.core import Batch
+	out_job = circuit.to_job()
+	batch_job = Batch(jobs=[out_job])
+	print("Writing output file: " + outfile)
+	batch.dump(outfile)
+
 # This is an annoying way of doing things but:
 # The errors produced by aqasm2circ imply it is python, which is good.
 # BUT: the parts of MyQLM that generate circuits from aqasm are not 
@@ -75,7 +83,16 @@ if __name__ == '__main__':
 
 	infile = args.aqasm
 
-	outfile = args.aqasm + '.job'
+	batch = False
+
+	if (args.b != None):
+		batch = args.b
+
+	if batch :
+		outfile = args.aqasm + '.batch'
+
+	else:
+		outfile = args.aqasm + '.job'
 	if (args.o != None):
 		outfile = args.o
 
@@ -91,5 +108,8 @@ if __name__ == '__main__':
 
 	if infile != '':
 		c = run_aqasm2circ(infile, fm, ndg, ni, [])
-		gen_job(c, outfile)
+		if batch:
+			gen_batch(c, outfile)
+		else:
+			gen_job(c, outfile)
 	
