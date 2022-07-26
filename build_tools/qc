@@ -80,14 +80,14 @@ if __name__ == '__main__':
 		outfile = args.o
 
 	fm = False
-	if (args.full-matrices != None):
-		fm = args.full-matrices
+	if (args.full_matrices != None):
+		fm = args.full_matrices
 	ndg = False
-	if (args.no-default-gateset != None):
-		ndg = ags.no-default-gateset
+	if (args.no_default_gateset != None):
+		ndg = ags.no_default_gateset
 	ni = False
-	if (args.no-inline != None):
-		ni = args.no-inline
+	if (args.no_inline != None):
+		ni = args.no_inline
 
 	if infile != '':
 		c = run_aqasm2circ(infile, fm, ndg, ni, [])
