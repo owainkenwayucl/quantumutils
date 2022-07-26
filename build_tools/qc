@@ -19,7 +19,7 @@ def run_aqasm2circ(infile, fm, ndg, ni, modules):
 	import subprocess
 	from qat.core import Circuit
 
-	td = tempfile.mkdtemp(prefix='qc')
+	td = tempfile.mkdtemp(prefix='qc_')
 	outfilename = infile + ".circ"
 	outfile = os.path.join(td, outfilename)
 
@@ -37,7 +37,7 @@ def run_aqasm2circ(infile, fm, ndg, ni, modules):
 	command_line.append(infile)
 	command_line.append(outfile)
 
-	print("aqaqsm2circ command: " + command_line)
+	print("aqaqsm2circ command: " + str(command_line))
 
 	status = subprocess.run(command_line, capture_output=True, encoding='UTF-8')
 
