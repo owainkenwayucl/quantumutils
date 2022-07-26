@@ -46,7 +46,7 @@ def run_aqasm2circ(infile, fm, ndg, ni, modules):
 		os.remove(outfile)
 		os.rmdir(td)
 		return c
-	else 
+	else:
 		raise OSError(status.stderr)
 	
 # Main function
