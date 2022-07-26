@@ -78,7 +78,7 @@ if __name__ == '__main__':
 	parser.add_argument('--full-matrices', action='store_true', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
 	parser.add_argument('--no-default-gateset', action='store_true', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
 	parser.add_argument('--no-inline', action='store_true', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
-	parser.add_argument('-L', action='append', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
+	parser.add_argument('-L', metavar='module', action='append', help='Passed to aqasm2circ.  See aqasm2circ --help for details.')
 
 	parser.add_argument('aqasm')
 	args = parser.parse_args()
