@@ -29,7 +29,7 @@ def gen_batch(circuit, outfile):
 # look at them, so despite being in python and there probably being 
 # a library call we can make to do this directly, we go this circuitous
 # route of subprocess for license reasons :(
-def run_aqasm2circ(infile, fm, ndg, ni, modules):
+def run_aqasm2circ(infile, fm=False, ndg=False, ni=False, modules=[]):
 	import tempfile
 	import os.path
 	import subprocess
