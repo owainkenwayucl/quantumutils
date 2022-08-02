@@ -36,4 +36,12 @@ def myqlm_unpack(result):
 	for sample in result:
 		buckets.append(sample.probability)
 		states.append(sample.state)
-	return states,buckets   
+	return states,buckets  
+
+# Generate the input lists for our histogram function from a qsharp_utils dict:
+def qsharp_unpack(results):
+	states = results.keys()
+	buckets = []
+	for a in states:
+		buckets.append(results[a])
+	return states,buckets
