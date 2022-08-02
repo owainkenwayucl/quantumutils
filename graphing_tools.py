@@ -40,7 +40,7 @@ def myqlm_unpack(result):
 
 # Generate the input lists for our histogram function from a qsharp_utils dict:
 def qsharp_unpack(results):
-	states = list(results.keys()).sort()
+	states = list(results.keys())
 	buckets = []
 	for a in states:
 		buckets.append(results[a])
