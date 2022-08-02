@@ -5,7 +5,7 @@ set -e
 QISKIT_VERSION=${QISKIT_VERSION:-0.36.2}
 MYQLM_VERSION=${MYQLM_VERSION:-1.5.1}
 BRAKET_VERSION=${BRAKET_VERSION:-1.25.0}
-QSHARP_VERSION=${QSHARP_VERSION:-v0.25.222597}
+QSHARP_VERSION=${QSHARP_VERSION:-0.25.222597}
 
 conda create --no-default-packages -n ql3 python=3.9
 
@@ -19,7 +19,7 @@ conda install jupyter
 conda install notebook
 conda install jupyterlab
 conda install qtconsole
-conda install -c microsoft qsharp==${QSHARP_VERSION}
+conda install -c microsoft qsharp=${QSHARP_VERSION}
 pip3 install qiskit==${QISKIT_VERSION}
 pip3 install qiskit[visualization]==${QISKIT_VERSION}
 pip3 install amazon-braket-sdk==${BRAKET_VERSION}
