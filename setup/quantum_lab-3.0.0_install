@@ -26,3 +26,8 @@ pip3 install Wand
 pip3 install myqlm==${MYQLM_VERSION} 
 conda install -c microsoft qsharp=${QSHARP_VERSION}
 python3 -m qat.magics.install
+
+cd ~/Applications/anaconda3/envs/ql3/bin
+ln -s ${HOME}/Source/quantumutils/build_tools/qc
+cd ~/Applications/anaconda3/envs/ql3/lib/python3.9/site-packages
+ln -s /home/lab/Source/quantumutils/build_tools/qc qc.py
