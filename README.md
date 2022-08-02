@@ -5,3 +5,4 @@ Tools and libraries of functions for various Quantum Simulators
 * `setup/` - scripts to generate my conda environments for running various simulators on my laptop.
 * `graphing_tools.py` - set of routines to generate the same histograms for different simulators.
 * `qlm_math.py` - naïve math library.
+* `qsharp_utils.py` - various routines to make Q# nicer.
