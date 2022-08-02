@@ -31,3 +31,7 @@ cd ~/Applications/anaconda3/envs/ql3/bin
 ln -s ${HOME}/Source/quantumutils/build_tools/qc
 cd ~/Applications/anaconda3/envs/ql3/lib/python3.9/site-packages
 ln -s /home/lab/Source/quantumutils/build_tools/qc qc.py
+ln -s /home/lab/Source/quantumutils/qlm_math.py .
+ln -s /home/lab/Source/quantumutils/qsharp_utils.py .
+ln -s /home/lab/Source/quantumutils/graphing_tools.py .
+
