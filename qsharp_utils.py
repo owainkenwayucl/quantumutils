@@ -1,7 +1,7 @@
 # Here are some utilities to make Q# more usable:
 
 # Returns a dict of states
-def MultiSim(c, n):
+def multi_sim(c, n):
 	results = {}
 	for a in range(n):
 		r = c.simulate()
