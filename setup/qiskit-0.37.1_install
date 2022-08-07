@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e
+
+QISKIT_VERSION=${QISKIT_VERSION:-0.37.1}
+
+
+conda create --no-default-packages -n qiskit python=3.9
+
+# Thanks @BuckmasterFresh for this:
+# https://twitter.com/BuckmasterFresh/status/1541746939099742209
+source activate qiskit
+
+pip3 install --upgrade pip
+conda install ipython
+conda install jupyter
+conda install jupyterlab
+conda install qtconsole
+pip3 install qiskit==${QISKIT_VERSION}
+pip3 install qiskit[visualization]==${QISKIT_VERSION}
