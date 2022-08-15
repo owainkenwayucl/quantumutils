@@ -2,10 +2,10 @@
 
 set -e
 
-QISKIT_VERSION=${QISKIT_VERSION:-0.19.6}
+QISKIT_VERSION=${QISKIT_VERSION:-0.29.1}
 
 
-conda create --no-default-packages -n qiskitT3 python=3.9
+conda create --no-default-packages -n qiskitT3 python=3.7
 
 # Thanks @BuckmasterFresh for this:
 # https://twitter.com/BuckmasterFresh/status/1541746939099742209
