@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -e
+
+QISKIT_VERSION=${QISKIT_VERSION:-0.37.1}
+MYQLM_VERSION=${MYQLM_VERSION:-1.5.1}
+BRAKET_VERSION=${BRAKET_VERSION:-1.25.0}
+QSHARP_VERSION=${QSHARP_VERSION:-0.25.222597}
+
+LAB_NAME=${LAB_NAME:-ql4}
+
+conda create --no-default-packages -n ${LAB_NAME} python=3.9
+
+# Thanks @BuckmasterFresh for this:
+# https://twitter.com/BuckmasterFresh/status/1541746939099742209
+source activate ${LAB_NAME} 
+
+pip3 install --upgrade pip
+conda install ipython
+conda install jupyter
+conda install notebook
+conda install jupyterlab
+conda install qtconsole
+pip3 install qiskit==${QISKIT_VERSION}
+pip3 install qiskit[visualization]==${QISKIT_VERSION}
+pip3 install amazon-braket-sdk==${BRAKET_VERSION}
+pip3 install Wand
+pip3 install myqlm==${MYQLM_VERSION} 
+conda install -c microsoft qsharp=${QSHARP_VERSION}
+python3 -m qat.magics.install
+
+cd ~/Applications/anaconda3/envs/${LAB_NAME}/bin
+ln -s ${HOME}/Source/quantumutils/build_tools/qc
+cd ~/Applications/anaconda3/envs/${LAB_NAME}/lib/python3.9/site-packages
+ln -s ${HOME}/Source/quantumutils/build_tools/qc qc.py
+ln -s ${HOME}/Source/quantumutils/qlm_math.py .
+ln -s ${HOME}/Source/quantumutils/qsharp_utils.py .
+ln -s ${HOME}/Source/quantumutils/graphing_tools.py .
+
